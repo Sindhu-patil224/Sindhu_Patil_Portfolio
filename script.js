@@ -1,64 +1,78 @@
 // Smooth Scroll
 
-document.querySelectorAll('nav a').forEach(anchor => {
+document.querySelectorAll("nav a").forEach(anchor => {
 
-anchor.addEventListener('click', function(e){
+    anchor.addEventListener("click", function (e) {
 
-e.preventDefault();
+        e.preventDefault();
 
-document.querySelector(this.getAttribute('href')).scrollIntoView({
+        const target = document.querySelector(this.getAttribute("href"));
 
-behavior:'smooth'
+        if (target) {
 
-});
+            target.scrollIntoView({
 
-});
+                behavior: "smooth"
+
+            });
+
+        }
+
+    });
 
 });
 
 
 // Highlight Active Navbar
 
-const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll("nav ul li a");
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav ul li a");
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-let current="";
+    let current = "";
 
-sections.forEach(section=>{
+    sections.forEach(section => {
 
-const sectionTop=section.offsetTop-150;
+        const sectionTop = section.offsetTop - 150;
 
-if(scrollY>=sectionTop){
+        if (window.scrollY >= sectionTop) {
 
-current=section.getAttribute("id");
+            current = section.getAttribute("id");
 
-}
+        }
 
-});
+    });
 
-navLinks.forEach(link=>{
+    navLinks.forEach(link => {
 
-link.classList.remove("active");
+        link.classList.remove("active");
 
-if(link.getAttribute("href")==="#"+current){
+        if (link.getAttribute("href") === "#" + current) {
 
-link.classList.add("active");
+            link.classList.add("active");
 
-}
+        }
 
-});
+    });
 
 });
 
 
 // Navbar Shadow
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-const header=document.querySelector("header");
+    const header = document.querySelector("header");
 
-header.classList.toggle("sticky",window.scrollY>50);
+    if (window.scrollY > 50) {
+
+        header.classList.add("sticky");
+
+    } else {
+
+        header.classList.remove("sticky");
+
+    }
 
 });
